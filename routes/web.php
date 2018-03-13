@@ -34,7 +34,6 @@ Auth::routes();
 // }));
 
 Route::get('form', 'HomeController@index');
-
 Route::post('form', 'HomeController@formValidationPost');
 
 Route::post('/books', function() {

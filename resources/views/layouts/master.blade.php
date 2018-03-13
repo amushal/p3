@@ -15,14 +15,22 @@
 <body class="bg-light">
 
 <div class="container">
+
     <div class="py-5 text-center">
         <h2>Cost Calculator</h2>
         <p class="lead">Calculate the total cost and monthly payments.</p>
     </div>
     <div class="row">
-        <div class="col-lg-8"> @yield('content') </div>
+        @yield('content')
     </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2018 Mushal.me</p>
+    </footer>
+
 </div>
+
+
 </body>
 
 </html>

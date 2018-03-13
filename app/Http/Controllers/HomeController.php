@@ -16,7 +16,13 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('form');
+        //return view('form');
+        return view('form')->with([
+            'shipType'=>'',
+            'taxRate'=>0,
+            'monthly'=>0,
+            'total' => 0,
+        ]);
     }
 
     public function welcome()
@@ -38,10 +44,10 @@ class HomeController extends Controller
     {
         $this->validate($request, [
             'name' => 'alpha',
-            'product' => 'alphaNumeric|max:25',
+            'product' => 'alpha_num|max:25',
             'email' => 'email',
             'website' => 'url',
-            'price' => 'required|float|min:0|max:1000000',
+            'price' => 'required|numeric|min:0|max:1000000',
             'quantity' => 'required|min:0|max:1000',
             'payments' => 'required|min:0|max:1000',
             'discount' => 'min:0|max:100',
@@ -62,15 +68,15 @@ class HomeController extends Controller
         $total = 0;
 
         # Get the Form data need for calculation
-        $email = $form->get('email');
-        $price = $form->get('price');
-        $quantity = $form->get('quantity');
-        $tax = $form->get('tax');
-        $discount = (float)$form->get('discount');
-        $discountType = $form->get('discountType');
-        $payments = $form->get('payments');
-        $shipping = $form->get('shipping');
-        $emailMe = $form->has('emailMe');
+        $email = $request->get('email');
+        $price = $request->get('price');
+        $quantity = $request->get('quantity');
+        $tax = $request->get('tax');
+        $discount = (float)$request->get('discount');
+        $discountType = $request->get('discountType');
+        $payments = $request->get('payments');
+        $shipping = $request->get('shipping');
+        $emailMe = $request->has('emailMe');
 
         // Calculate the total:
         $total = $price * $quantity;
@@ -92,6 +98,7 @@ class HomeController extends Controller
             $tax = $tax . '%';
         }
 
+        $errors = "";
         // Will not allow negative results at runtime
         if ($total < 0) {
             array_push($errors, '"Total" result cannot be less than 0.');
@@ -109,7 +116,7 @@ class HomeController extends Controller
 
         //raise exception
         if (count($errors) > 0)
-            $form->hasErrors = true;
+            $request->hasErrors = true;
 
         // Calculate the monthly payments:
         $monthly = $total / $payments;
@@ -125,7 +132,18 @@ class HomeController extends Controller
             $shipping = '';
         }
 
-        return view('form');
+        //return view('form', array('discount' => $discount));
+
+        //return redirect('form')->withInput();
+
+        return view('form')->with([
+            'shipType'=>$shipType,
+            'taxRate'=>$discountType,
+            'monthly'=>$monthly,
+            'total' => $total,
+        ]);
+        //$car = Car::find($id);
+        //return view('cars.show', array('car' => $car));
 
     }
 

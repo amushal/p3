@@ -6,119 +6,116 @@
 
         @if (count($errors) > 0)
 
-        <h4 class="alert alert-danger d-flex justify-content-between align-items-center mb-3">
-            <strong>Invalid input</strong>
-            <span class="badge badge-secondary badge-pill"><?= count($errors) ?></span>
-        </h4>
-        <ul class='list-group alert-danger'>
+            <h4 class="alert alert-danger d-flex justify-content-between align-items-center mb-3">
+                <strong>Invalid input</strong>
+                <span class="badge badge-secondary badge-pill">{{ count($errors) }}</span>
+            </h4>
+            <ul class='list-group alert-danger'>
 
-            @foreach ($errors->all() as $error)
-                <li class="list-group-item"><?= $error ?></li>
-            @endforeach
+                @foreach ($errors->all() as $error)
+                    <li class="list-group-item">{{ $error }}</li>
+                @endforeach
 
-        </ul>
+            </ul>
 
         @else
 
-            {{ Form::open(array('url'=>'form')) }}
+            <h4 class="alert alert-success d-flex justify-content-between align-items-center mb-3">
+                <strong>Result</strong>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Name</h6>
+                    </div>
+                    <span class="text-muted">{{ request('name') }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Email</h6>
+                    </div>
+                    <span class="text-muted">{{ request('email') }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Product Name</h6>
+                    </div>
+                    <span class="text-muted">{{ request('product') }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Price</h6>
+                    </div>
+                    <span class="text-muted">{{ request('price') }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Quantity</h6>
+                    </div>
+                    <span class="text-muted">{{ request('quantity') }}</span>
+                </li>
 
-            {{ csrf_field() }}
+                @if (request('discount') != 0)
 
-        <h4 class="alert alert-success d-flex justify-content-between align-items-center mb-3">
-            <strong>Result</strong>
-        </h4>
-        <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                    <h6 class="my-0">Name</h6>
-                </div>
-                <span class="text-muted"><?= $form->get('name') ?></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                    <h6 class="my-0">Email</h6>
-                </div>
-                <span class="text-muted"><?= $form->get('email') ?></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                    <h6 class="my-0">Product Name</h6>
-                </div>
-                <span class="text-muted"><?= $form->get('product') ?></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                    <h6 class="my-0">Price</h6>
-                </div>
-                <span class="text-muted"><?= format($price) ?></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                    <h6 class="my-0">Quantity</h6>
-                </div>
-                <span class="text-muted"><?= $quantity ?></span>
-            </li>
-
-            @if ($discount != 0)
-
-            <li class="list-group-item d-flex justify-content-between bg-light">
-                <div class="text-success">
-                    <h6 class="my-0">Discount</h6>
-                </div>
-                <span class="text-success"><?= round($discount, 2) ?>
-                    <small><?= $discountType ?></small>
+                    <li class="list-group-item d-flex justify-content-between bg-light">
+                        <div class="text-success">
+                            <h6 class="my-0">Discount</h6>
+                        </div>
+                        <span class="text-success">{{ round(request('discount'), 2) }}
+                            <small>{{ request('discountType') }}</small>
                                 </span>
-            </li>
+                    </li>
 
-            @endif
-
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                    <h6 class="my-0">Tax</h6>
-                    <small><?= $tax ?></small>
-
-                </div>
-                <span class="text-muted"><?= format($taxRate) ?></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                    <h6 class="my-0">Shipping</h6>
-                    <small><?= $shipType ?></small>
-                </div>
-
-                @if ($shipping != 0)
-                <span class="text-muted"><?= format($shipping) ?></span>
                 @endif
 
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                    <h6 class="my-0">Number of payments</h6>
-                </div>
-                <span class="text-muted"><?= $payments ?></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-                <span>Total (USD)</span>
-                <strong><?= format($total) ?></strong>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-                <span>Monthly payments</span>
-                <strong><?= format($monthly) ?></strong>
-            </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Tax</h6>
+                        <small>{{ request('tax') }}</small>
 
-            @if ($emailMe)
-            <li class="list-group-item d-flex justify-content-between bg-light">
-                <div class="text-success">
-                    <h6 class="my-0">Will send the results at a later time</h6>
-                </div>
-            </li>
-            @endif
+                    </div>
+                    <span class="text-muted">{{ request('taxRate') }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Shipping</h6>
+                        <small>{{ old('shipType') }}</small>
+                    </div>
 
-        </ul>
+                    @if (request('shipping') != 0)
+                        <span class="text-muted">{{ format(request('shipping')) }}</span>
+                    @endif
 
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Number of payments</h6>
+                    </div>
+                    <span class="text-muted">{{ request('payments') }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (USD)</span>
+                    <strong>{{ $total }}</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Monthly payments</span>
+                    <strong>{{ $monthly }}</strong>
+                </li>
+
+                @if (request('emailMe'))
+                    <li class="list-group-item d-flex justify-content-between bg-light">
+                        <div class="text-success">
+                            <h6 class="my-0">Will send the results at a later time</h6>
+                        </div>
+                    </li>
+                @endif
+
+            </ul>
         @endif
 
     </div>
+
+
 
     <div class="col-md-8 order-md-1">
 
@@ -128,6 +125,10 @@
 
         <hr class="mb-4">
 
+        <form method='POST' action='/form'>
+
+            {{ csrf_field() }}
+
             <div class="row">
                 <div class="col-md-6 mb-3 {{ $errors->has('name') ? 'has-error' : '' }}">
                     <label for="name">Name</label>
@@ -135,41 +136,39 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">@</span>
                         </div>
-                       {{-- <input type="text"
+                        <input type="text"
                                class="form-control"
                                placeholder="Enter your name"
                                id="name"
                                name="name"
-                               value='<?= $form->prefill('name', '') ?>'>--}}
-                        {!! Form::text('name', $value = prefill('name', ''), ['class' => 'form-control', 'placeholder' => 'Enter you name', 'id' =>'name']) !!}
+                               value='{{ old('name', '') }}'>
+                        {{-- {!! Form::text('name', $value = prefill('name', ''), ['class' => 'form-control', 'placeholder' => 'Enter you name', 'id' =>'name']) !!} --}}
 
                     </div>
                 </div>
                 <div class="col-md-6 mb-3 {{ $errors->has('email') ? 'has-error' : '' }}">
                     <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                    {{--<input type="email"
+                    <input type="email"
                            class="form-control"
                            id="email"
                            name="email"
                            aria-describedby="emailHelp"
                            placeholder="you@example.com"
-                           value='<?= $form->prefill('email', '') ?>'>--}}
-                    {!! Form::email('email', $value = null, ['class' => 'form-control', 'placeholder' => 'name@example.me']) !!}
+                           value='{{ old('email', '') }}'>
 
                     <small id="emailHelp"
                            class="form-text text-muted">if you like us to email you the result.
                     </small>
                 </div>
             </div>
-            <div class="mb-3 {{ $errors->has('email') ? 'has-error' : '' }}">
+            <div class="mb-3 {{ $errors->has('product') ? 'has-error' : '' }}">
                 <label for="product">Product Name <span class="text-muted">(Optional)</span></label>
-                {{--<input type="text"
+                <input type="text"
                        class="form-control"
                        id="product"
                        name="product"
                        placeholder="Enter a product name"
-                       value='<?= $form->prefill('product', '') ?>'>--}}
-                {!! Form::text('product', $value = null, ['class' => 'form-control', 'placeholder' => '']) !!}
+                       value='{{ old('product', '') }}'>
 
             </div>
             <div class="row">
@@ -179,60 +178,61 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
                         </div>
-                        {{--<input type="text"
+                        <input type="text"
                                class="form-control"
                                id="price"
                                name="price"
                                placeholder="Price in US Dollar"
-                               value='<?= $form->prefill('price', '') ?>'>--}}
-                        {!! Form::number('price', $value = null, ['class' => 'form-control', 'placeholder' => 'Price']) !!}
+                               value='{{ old('price', '') }}'>
                     </div>
                 </div>
-                <div class="col-md-4 mb-3" {{ $errors->has('qty') ? 'has-error' : '' }}>
+                <div class="col-md-4 mb-3" {{ $errors->has('quantity') ? 'has-error' : '' }}>
                     <label for="quantity">Quantity</label>
-                    {{--<input type="number"
+                    <input type="number"
                            class="form-control"
                            placeholder="Quantity"
                            id="quantity"
                            name="quantity"
-                           value='<?= $form->prefill('quantity', '') ?>'>--}}
-                    {!! Form::number('qty', $value = null, ['class' => 'form-control', 'placeholder' => 'Quantity']) !!}
+                           value='{{ old('quantity', '') }}'>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-4 mb-3" {{ $errors->has('payments') ? 'has-error' : '' }}>
                     <label for="payments">Payments</label>
-                   {{-- <input type="number"
+                    <input type="number"
                            class="form-control"
                            placeholder="Payments"
                            id="payments"
                            name="payments"
-                           value='<?= $form->prefill('payments', '') ?>'>--}}
-                    {!! Form::number('disc', $value = null, ['class' => 'form-control', 'placeholder' => 'Discount']) !!}
+                           value='{{ old('payments') }}'>
                 </div>
             </div>
+
             <div class="row">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-3" {{ $errors->has('discount') ? 'has-error' : '' }}>
                     <label for="discount">Discount <span class="text-muted">(Optional)</span></label>
-                    {{--<input type="text"
+                    <input type="text"
                            class="form-control"
                            placeholder="Discount"
                            id="discount"
                            name="discount"
-                           value='<?= $form->prefill('discount', '') ?>'>--}}
-                    {!! Form::number('disc', $value = null, ['class' => 'form-control', 'placeholder' => 'Discount']) !!}
+                           value='{{ old('discount', '') }}'>
                 </div>
+
+                {{--todo: fix below--}}
+
                 <div class="col-md-6 mb-3 custom-control custom-checkbox">
                     <fieldset class='radios'>
                         <label for="discountType">Discount Type </label><br>
                         <label><input type='radio'
                                       id="discountType"
                                       name='discountType'
-                                      value='%' <?php if ($form->get('discountType') == '%') echo 'checked' ?>>&nbsp;Percent</label>&nbsp;&nbsp;&nbsp;
+                                      value='%'>&nbsp;Percent</label>&nbsp;&nbsp;&nbsp;
                         <label><input type='radio'
                                       name='discountType'
-                                      value='USD OFF' <?php if ($form->get('discountType') == 'USD OFF') echo 'checked' ?>>&nbsp;USD OFF</label>
+                                      value='USD OFF'>&nbsp;USD OFF</label>
                     </fieldset>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="tax">Tax <span class="text-muted">(Optional)</span></label>
@@ -240,22 +240,21 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">%</span>
                         </div>
-                        {{--<input type="text"
+                        <input type="text"
                                class="form-control"
                                id="tax"
                                name="tax"
                                placeholder="Tax amount"
-                               value='<?= $form->prefill('tax', '') ?>'>--}}
-                        {!! Form::number('tax', $value = null, ['class' => 'form-control', 'placeholder' => 'Tax']) !!}
+                               value=''>
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="shipping">Shipping</label>
                     <select class="custom-select d-block w-100" id="shipping" name="shipping">
                         <option value=''>Choose one...</option>
-                        <option value='0' <?php if ($form->get('shipping') == '0') echo 'selected' ?>>Free / Pickup</option>
-                        <option value='9.95' <?php if ($form->get('shipping') == '9.95') echo 'selected' ?>>Standard: 1 Week $9.95</option>
-                        <option value='29.95' <?php if ($form->get('shipping') == '29.95') echo 'selected' ?>>Expedite: 2nd day $29.95</option>
+                        <option value='0' >Free / Pickup</option>
+                        <option value='9.95'>Standard: 1 Week $9.95</option>
+                        <option value='29.95'>Expedite: 2nd day $29.95</option>
                     </select>
                 </div>
             </div>
@@ -263,15 +262,15 @@
                 <input type="checkbox"
                        class="custom-control-input"
                        id="emailMe"
-                       name="emailMe" <?php if ($form->has('emailMe')) echo 'checked' ?>>
+                       name="emailMe">
                 <label class="custom-control-label" for="emailMe">Send me the results</label>
             </div>
 
             <hr class="mb-4">
 
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Calculate cost</button>
 
-        {!! Form::close()  !!}
+        </form>
 
     </div>
 
