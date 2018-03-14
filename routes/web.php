@@ -11,11 +11,6 @@
 |
 */
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
@@ -32,25 +27,30 @@ Auth::routes();
 //  //form validation come here
 //
 // }));
-
-Route::get('form', 'HomeController@index');
-Route::post('form', 'HomeController@formValidationPost');
-
-Route::post('/books', function() {
-    return 'Version B';
-});
-
+//Route::post('/books', function() {
+//    return 'Version B';
+//});
+//
 //Route::get('/books/{id?}', function($id = '') {
 //    return 'Version C';
 //});
+//
+//
+//Route::get('/books', function() {
+//    return 'Version A';
+//});
+//
+//
+//Route::get('/book/{id}', function ($id) {
+//    return 'You have requested book #' . $id;
+//});
 
+Route::get('/', 'CostController@index');
 
-Route::get('/books', function() {
-    return 'Version A';
+Route::post('/', 'CostController@formValidationPost');
+
+Route::get('/welcome', function () {
+    return View('welcome');
 });
 
-
-Route::get('/book/{id}', function ($id) {
-    return 'You have requested book #' . $id;
-});
 
