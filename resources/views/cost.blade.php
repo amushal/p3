@@ -179,7 +179,7 @@
                                class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}"
                                id="price"
                                name="price"
-                               placeholder="Price in US Dollar"
+                               placeholder="Price in USD"
                                value="{{ old('price') }}">
                     </div>
                 </div>

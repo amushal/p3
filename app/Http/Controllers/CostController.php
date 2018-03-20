@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use DebugBar;
 use Illuminate\Http\Request;
 
 class CostController extends Controller
 {
 
+    public function practice1()
+    {
+        $data = ['foo' => 'bar'];
+        Debugbar::info($data);
+        Debugbar::info('Current environment: '.App::environment());
+        Debugbar::error('Error!');
+        Debugbar::warning('Watch out…');
+        Debugbar::addMessage('Another message', 'mylabel');
+
+        return 'Demoing some of the features of Debugbar';
+    }
     public function index()
     {
         return view('cost')->with([
