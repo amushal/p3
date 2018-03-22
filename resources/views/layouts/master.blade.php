@@ -26,8 +26,8 @@
         <header>
             <img src='/images/cost.png' id='logo' alt='Cost Calculator Logo'/>
         </header>
-        <h2>Cost Calculator</h2>
-        <p class="lead">Calculate the total cost and monthly payments.</p>
+        <h2>Pricing calculator</h2>
+        <p class="lead">Plan Ahead, how much would it really cost.</p>
     </div>
 
     <div class="row">

@@ -117,7 +117,8 @@
     <div class="col-md-8 order-md-1">
 
         <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Please provide the requested information:</span>
+            <span class="text-muted">Looking for a simple tool to help you price a product, and break out your payments over time, look no further.<br/>
+            The Pricing calculator will help you do that when you provide the following:</span>
         </h4>
 
         <hr class="mb-4">
