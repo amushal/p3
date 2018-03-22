@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
 #
 # Customize the following for your project/server
 #
-docRoot="/var/www/html/p3"
-usernameServer="root@159.89.155.55"
+docRoot="/var/www/html/foobooks"
+usernameServer="root@server.ip.address"
 
 
 # Helper output functions
@@ -16,7 +16,6 @@ line () {
 info () {
     echo $(tput bold)$(tput setaf 4)$@ $(tput sgr 0)
 }
-
 
 # Function to handle git actions locally
 welcome () {
@@ -62,7 +61,12 @@ welcome () {
 deploy () {
     cd $docRoot;
     info "git pull origin master ---------------"
-    git pull origin master
+    haystack=$(git pull origin master)
+    needle="config"
+    if [[ "$haystack" == *"$needle"* ]]; then
+        info "Detected change in config directory, running artisan cache:clear"
+        php artisan cache:clear
+    fi
     line
     info "composer install --no-dev ------------"
     composer install --no-dev
