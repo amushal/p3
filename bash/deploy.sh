@@ -3,8 +3,8 @@
 #
 # Customize the following for your project/server
 #
-docRoot="/var/www/html/foobooks"
-usernameServer="root@server.ip.address"
+docRoot="/var/www/html/p3"
+usernameServer="root@159.89.155.55"
 
 
 # Helper output functions
