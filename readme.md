@@ -1,4 +1,4 @@
-# Cost Calculator (Project 3 - PHP Laravel framework)
+# Project 3 (Cost Calculator)
 + By: Ala Mushal
 + Production URL: <http://p3.mushal.me>
 
@@ -9,5 +9,6 @@
 + Logo [Cost Control Icons](http://www.pvhc.net/Cost-Control-Icon20pctizurp)
 + Alpha with Space validation rule [Laravel validator for alphabetic characters and spaces](https://learninglaravel.net/laravel-validator-for-alphabetic-characters-and-spaces)
 + Packagist Laravel Debug Bar [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
+
 ## Code style divergences
 n/a
