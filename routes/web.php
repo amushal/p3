@@ -11,7 +11,7 @@
 |
 */
 
-Auth::routes();
+//Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
@@ -45,12 +45,18 @@ Auth::routes();
 //    return 'You have requested book #' . $id;
 //});
 
+Route::get('/', 'HomeController@welcome');
+
+Route::get('/about', 'HomeController@about');
+
+Route::get('/contact', 'HomeController@contact');
+
 Route::get('/', 'CostController@index');
 
 Route::post('/', 'CostController@formValidationPost');
 
-Route::get('/welcome', function () {
-    return View('welcome');
-});
+//Route::get('/welcome', function () {
+//    return View('welcome');
+//});
 
 

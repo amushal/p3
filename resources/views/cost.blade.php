@@ -2,6 +2,18 @@
 
 @section('content')
 
+    <div class="py-5">
+        <h2>Pricing calculator</h2>
+        <p class="lead">Plan Ahead, how much would it really cost.</p>
+    </div>
+
+    {{--<h1>Pricing Calculator</h1>
+
+    <p>
+        Looking for a simple tool to help you price a product, and break out your payments over time, look no further.<br/>
+        The Pricing calculator can help you do just that.
+    </p>--}}
+
     <div class="col-md-4 order-md-2 mb-4">
 
         @if ($errors->any())
@@ -117,8 +129,7 @@
     <div class="col-md-8 order-md-1">
 
         <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Looking for a simple tool to help you price a product, and break out your payments over time, look no further.<br/>
-            The Pricing calculator will help you do that when you provide the following:</span>
+            <span class="text-muted">Enter the following information:</span>
         </h4>
 
         <hr class="mb-4">

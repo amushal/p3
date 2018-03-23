@@ -4,6 +4,13 @@ return [
 
     'supportEmail' => 'support@mushal.me',
 
+    'nav' => [
+        '/' => 'Home',
+        '/about' => 'About',
+        '/contact' => 'Contact'
+
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

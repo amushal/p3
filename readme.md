@@ -9,6 +9,7 @@
 + Logo [Cost Control Icons](http://www.pvhc.net/Cost-Control-Icon20pctizurp)
 + Alpha with Space validation rule [Laravel validator for alphabetic characters and spaces](https://learninglaravel.net/laravel-validator-for-alphabetic-characters-and-spaces)
 + Packagist Laravel Debug Bar [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
++ Icons via [Font Awesome](https://fontawesome.com)
 
 ## Code style divergences
 n/a

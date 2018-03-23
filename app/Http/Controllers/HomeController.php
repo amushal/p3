@@ -16,12 +16,16 @@ class HomeController extends Controller
 
     public function about()
     {
-        return 'This is information about Cost calculator';
+        //return 'This is information about Cost calculator';
+        return view('home.about');
+
     }
 
     public function contact()
     {
-        return 'Questions? Email us at ' . Config::get('app.supportEmail');
+        return view('home.contact')->with([
+            'email' => config('app.supportEmail')
+        ]);
     }
 
 }
