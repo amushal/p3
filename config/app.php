@@ -5,7 +5,7 @@ return [
     'supportEmail' => 'support@mushal.me',
 
     'nav' => [
-        '/' => 'Home',
+        '/cost' => 'Home',
         '/about' => 'About',
         '/contact' => 'Contact'
 

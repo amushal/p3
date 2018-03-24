@@ -18,7 +18,6 @@ class HomeController extends Controller
     {
         //return 'This is information about Cost calculator';
         return view('home.about');
-
     }
 
     public function contact()

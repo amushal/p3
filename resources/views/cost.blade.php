@@ -134,7 +134,7 @@
 
         <hr class="mb-4">
 
-        <form method='POST' action='/'>
+        <form method='POST' action='/cost'>
 
             {{ csrf_field() }}
 
