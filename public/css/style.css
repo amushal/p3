@@ -77,3 +77,18 @@ h2 {
 h3 {
     font-size: 2.0rem;
 }
+.error {
+    list-style-type: none;
+    color: #a94442; /* reddish */
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    font-size: 12px;
+    font-style: italic;
+}
+.details {
+    font-size: 1.1rem;
+    font-size: 11px;
+    font-style: italic;
+}

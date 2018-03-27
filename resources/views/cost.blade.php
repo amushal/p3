@@ -17,15 +17,9 @@
     <div class="col-md-4 order-md-2 mb-4">
 
         @if ($errors->any())
-            <h4 class="alert alert-danger d-flex justify-content-between align-items-center mb-3">
-                <strong>Invalid input</strong>
-                <span class="badge badge-secondary badge-pill">{{ count($errors) }}</span>
-            </h4>
-            <ul class="list-group alert-danger">
-                @foreach ($errors->all() as $error)
-                    <li class="list-group-item">{{ $error }}</li>
-                @endforeach
-            </ul>
+
+            @include('modules.error-form')
+
 
         @else
             @if (Request::isMethod('post'))
@@ -130,6 +124,7 @@
 
         <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Enter the following information:</span>
+            <div class='details'>* Required fields</div>
         </h4>
 
         <hr class="mb-4">
@@ -140,7 +135,7 @@
 
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="name">Name</label>
+                    <label for="name">Name *</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">@</span>
@@ -151,6 +146,7 @@
                                id="name"
                                name="name"
                                value="{{ old('name') }}">
+                        @include('modules.error-field', ['field' => 'name'])
                     </div>
                 </div>
 
@@ -167,6 +163,7 @@
                     <small id="emailHelp"
                            class="form-text text-muted">if you like us to email you the result.
                     </small>
+                    @include('modules.error-field', ['field' => 'email'])
                 </div>
             </div>
 
@@ -178,11 +175,12 @@
                        name="product"
                        placeholder="Enter a product name"
                        value="{{ old('product') }}">
+                @include('modules.error-field', ['field' => 'product'])
             </div>
 
             <div class="row">
                 <div class="col-md-4 mb-3">
-                    <label for="price">Price </label>
+                    <label for="price">Price *</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
@@ -193,27 +191,30 @@
                                name="price"
                                placeholder="Price in USD"
                                value="{{ old('price') }}">
+                        @include('modules.error-field', ['field' => 'price'])
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-3">
-                    <label for="quantity">Quantity</label>
+                    <label for="quantity">Quantity *</label>
                     <input type="number"
                            class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}"
                            placeholder="Quantity"
                            id="quantity"
                            name="quantity"
                            value="{{ old('quantity') }}">
+                    @include('modules.error-field', ['field' => 'quantity'])
                 </div>
 
                 <div class="col-md-4 mb-3">
-                    <label for="payments">Payments</label>
+                    <label for="payments">Payments *</label>
                     <input type="number"
                            class="form-control {{ $errors->has('payments') ? 'is-invalid' : '' }}"
                            placeholder="Payments"
                            id="payments"
                            name="payments"
                            value="{{ old('payments') }}">
+                    @include('modules.error-field', ['field' => 'payments'])
                 </div>
             </div>
 
@@ -226,6 +227,7 @@
                            id="discount"
                            name="discount"
                            value="{{ old('discount') }}">
+                    @include('modules.error-field', ['field' => 'discount'])
                 </div>
 
                 <div class="col-md-6 mb-3 custom-control custom-checkbox">
@@ -255,6 +257,7 @@
                                name="tax"
                                placeholder="Tax amount"
                                value=''>
+                        @include('modules.error-field', ['field' => 'tax'])
                     </div>
                 </div>
 
