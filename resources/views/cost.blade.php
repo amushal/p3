@@ -124,8 +124,10 @@
 
         <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Enter the following information:</span>
-            <div class='details'>* Required fields</div>
         </h4>
+
+        <div class='details'>* Required fields</div>
+
 
         <hr class="mb-4">
 
