@@ -7,19 +7,11 @@
         <p class="lead">Plan Ahead, how much would it really cost.</p>
     </div>
 
-    {{--<h1>Pricing Calculator</h1>
-
-    <p>
-        Looking for a simple tool to help you price a product, and break out your payments over time, look no further.<br/>
-        The Pricing calculator can help you do just that.
-    </p>--}}
-
     <div class="col-md-4 order-md-2 mb-4">
 
         @if ($errors->any())
 
             @include('modules.error-form')
-
 
         @else
             @if (Request::isMethod('post'))
@@ -113,7 +105,6 @@
                         </li>
                     @endif
 
-
                 </ul>
             @endif
         @endif
@@ -148,6 +139,7 @@
                                id="name"
                                name="name"
                                value="{{ old('name') }}">
+
                         @include('modules.error-field', ['field' => 'name'])
                     </div>
                 </div>
@@ -258,21 +250,23 @@
                                id="tax"
                                name="tax"
                                placeholder="Tax amount"
-                               value=''>
+                               value="{{ old('tax') }}">
                         @include('modules.error-field', ['field' => 'tax'])
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label for="shipping">Shipping</label>
+
                     <select class="custom-select d-block w-100" id="shipping" name="shipping">
-                        <option value="" {{ (old('shipping') == '') ? 'selected' : null }}>Choose one...</option>
-                        <option value="0" {{ (old('shipping') == '0') ? 'selected' : null }}>Free / Pickup</option>
-                        <option value="9.95" {{ (old('shipping') == '9.95') ? 'selected' : null }}>Standard: 1 Week $9.95</option>
-                        <option value="29.95" {{ (old('shipping') == '29.95') ? 'selected' : null }}>Expedite: 2nd day $29.95</option>
+                        @foreach($methods as $method => $value)
+                            <option value='{{ $method }}' {{ (old('shipping') == $method) ? 'selected' : null }}>{{ $value }}</option>
+                        @endforeach
                     </select>
+
                 </div>
             </div>
+
 
             <div class="custom-control custom-checkbox">
                 <input type="checkbox"

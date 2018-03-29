@@ -8,17 +8,24 @@ use Illuminate\Http\Request;
 class CostController extends Controller
 {
 
+    private $methods = [
+        '0' => 'Free',
+        '9.95' => 'Standard: 1 Week $9.95',
+        '29.95' => 'Expedite: 2nd day $29.95'
+    ];
+
     public function practice1()
     {
         $data = ['foo' => 'bar'];
         Debugbar::info($data);
-        Debugbar::info('Current environment: '.App::environment());
+        Debugbar::info('Current environment: ' . App::environment());
         Debugbar::error('Error!');
         Debugbar::warning('Watch out…');
         Debugbar::addMessage('Another message', 'mylabel');
 
         return 'Demoing some of the features of Debugbar';
     }
+
     public function index()
     {
         return view('cost')->with([
@@ -26,6 +33,7 @@ class CostController extends Controller
             'taxRate' => 0,
             'monthly' => 0,
             'total' => 0,
+            'methods' => $this->methods
         ]);
     }
 
@@ -42,11 +50,6 @@ class CostController extends Controller
                 'discount' => 'nullable|numeric|min:0|max:100',
                 'tax' => 'nullable|numeric|min:0|max:100'
             ]
-//       ,[
-//            'name.required' => ' The name field is required.',
-//            'name.min' => ' The name must be at least 5 characters.',
-//            'name.max' => ' The name may not be greater than 35 characters.',
-//        ]
         );
 
         # Init
@@ -106,20 +109,19 @@ class CostController extends Controller
         if (count($errors) > 0)
             $request->hasErrors = true;
 
-
         // Calculate the monthly payments:
         $monthly = $total / $payments;
 
         if ($shipping == '0')
-            $shipType = 'Free / Pickup';
+            $shipType = 'Free';
         else if ($shipping == '9.95')
             $shipType = 'Standard: 1 Week $9.95';
         else if ($shipping == '29.95')
             $shipType = 'Expedite: 2nd day $29.95';
-        else {
-            $shipType = 'Not selected';
-            $shipping = '';
-        }
+//        else {
+//            $shipType = 'Not selected';
+//            //$shipping = 'none';
+//        }
 
         $request->flash();
 
@@ -132,6 +134,7 @@ class CostController extends Controller
             'taxRate' => $taxRate,
             'monthly' => $monthly,
             'total' => $total,
+            'methods' => $this->methods
         ]);
     }
 }
