@@ -2,7 +2,7 @@
 
 return [
 
-    'supportEmail' => 'support@mushal.me',
+    'supportEmail' => 'info@mushal.me',
 
     'nav' => [
         '/cost' => 'Home',

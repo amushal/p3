@@ -4,7 +4,7 @@
 
     <div class="py-5">
         <h2>Pricing calculator</h2>
-        <p class="lead">Plan Ahead, how much would it really cost.</p>
+        <p class="lead">Plan ahead, find out what your payments would be and how much would it really cost you?</p>
     </div>
 
     <div class="col-md-4 order-md-2 mb-4">
@@ -15,6 +15,7 @@
 
         @else
             @if (Request::isMethod('post'))
+
                 <h4 class="alert alert-success d-flex justify-content-between align-items-center mb-3">
                     <strong>Result</strong>
                 </h4>
@@ -31,12 +32,18 @@
                         </div>
                         <span class="text-muted">{{ old('email') }}</span>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Product Name</h6>
-                        </div>
-                        <span class="text-muted">{{ old('product') }}</span>
-                    </li>
+
+                    @if (old('product') != '')
+
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Product Name</h6>
+                            </div>
+                            <span class="text-muted">{{ old('product') }}</span>
+                        </li>
+
+                    @endif
+
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
                             <h6 class="my-0">Price</h6>
@@ -63,14 +70,20 @@
 
                     @endif
 
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Tax</h6>
-                            <small>{{ old('tax') }}</small>
+                    @if (old('tax') != 0)
 
-                        </div>
-                        <span class="text-muted">{{ $taxRate }}</span>
-                    </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Tax</h6>
+                                <small>{{ old('tax') . "%"}}</small>
+
+                            </div>
+                            <span class="text-muted">{{ @'$' . number_format($taxRate, 2, '.', ',') }}</span>
+
+                        </li>
+
+                    @endif
+
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
                             <h6 class="my-0">Shipping</h6>
@@ -78,7 +91,7 @@
                         </div>
 
                         @if (old('shipping') != 0)
-                            <span class="text-muted">{{ old('shipping') }}</span>
+                            <span class="text-muted">{{ '$' . old('shipping') }}</span>
                         @endif
 
                     </li>
@@ -106,8 +119,10 @@
                     @endif
 
                 </ul>
+
             @endif
         @endif
+
     </div>
 
 

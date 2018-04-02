@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use DebugBar;
 use Illuminate\Http\Request;
+
+# Used for Testing
+//use DebugBar;
+//use Log;
 
 class CostController extends Controller
 {
@@ -13,18 +16,6 @@ class CostController extends Controller
         '9.95' => 'Standard: 1 Week $9.95',
         '29.95' => 'Expedite: 2nd day $29.95'
     ];
-
-    public function practice1()
-    {
-        $data = ['foo' => 'bar'];
-        Debugbar::info($data);
-        Debugbar::info('Current environment: ' . App::environment());
-        Debugbar::error('Error!');
-        Debugbar::warning('Watch out…');
-        Debugbar::addMessage('Another message', 'mylabel');
-
-        return 'Demoing some of the features of Debugbar';
-    }
 
     public function index()
     {
@@ -52,17 +43,11 @@ class CostController extends Controller
             ]
         );
 
-        # Init
-        $taxRate = 0;
-        $shipType = '';
-        $monthly = 0;
-        $total = 0;
-
         # Get the Form data need for calculation
         $email = $request->get('email');
         $price = $request->get('price');
         $quantity = $request->get('quantity');
-        $tax = $request->get('tax');
+        $tax = (float)$request->get('tax');
         $discount = (float)$request->get('discount');
         $discountType = $request->get('discountType');
         $payments = $request->get('payments');
@@ -80,13 +65,11 @@ class CostController extends Controller
             $total = $total - $discount;
         }
 
+        $taxRate = 0;
         // Determine the tax:
-        if ($tax == '') {
-            $tax = 'no Tax';
-        } else {
+        if ($tax != 0) {
             $taxRate = ($tax / 100) + 1;
             $total = $total * $taxRate;
-            $tax = $tax . '%';
         }
 
         $errors = [];
@@ -112,16 +95,13 @@ class CostController extends Controller
         // Calculate the monthly payments:
         $monthly = $total / $payments;
 
+        $shipType = '';
         if ($shipping == '0')
             $shipType = 'Free';
         else if ($shipping == '9.95')
             $shipType = 'Standard: 1 Week $9.95';
         else if ($shipping == '29.95')
             $shipType = 'Expedite: 2nd day $29.95';
-//        else {
-//            $shipType = 'Not selected';
-//            //$shipping = 'none';
-//        }
 
         $request->flash();
 
